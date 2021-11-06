@@ -6,14 +6,14 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ProductRepository {
     private List<Product> products;
 
-
     @PostConstruct
-    public void init(){
+    public void init() {
         products = new ArrayList<>(Arrays.asList(
                 new Product(1L, "Bread"),
                 new Product(2L, "Milk"),
@@ -27,13 +27,7 @@ public class ProductRepository {
         return products;
     }
 
-    public Product findById (Long id){
-//        for (int i = 0; i < products.size(); i++) {
-//            if (products.get(i).getId() == id){
-//                return products.get(i);
-//            }
-//        }
-//        return null;
-        return products.stream().filter(n -> n.getId()==id).findFirst().orElseThrow(()-> new RuntimeException("..."));
+    public Optional<Product> findById(Long id){
+        return products.stream().filter(n -> n.getId() == id).findFirst();
     }
 }

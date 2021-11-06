@@ -1,6 +1,5 @@
 package ru.myeducation.context;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Arrays;
@@ -8,8 +7,7 @@ import java.util.Scanner;
 
 public class MainApp {
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context =  new AnnotationConfigApplicationContext("ru.myeducation.context");
-        OrderService orderService = context.getBean(OrderService.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("ru.myeducation.context");
         Cart cart = context.getBean(Cart.class);
         boolean isActive = true;
 
@@ -19,33 +17,29 @@ public class MainApp {
         System.out.println("Показать содержимое корзины. Введите: /show cart");
         System.out.println("Завершить работу. Введите: /exit");
 
-        while (isActive){
+        while (isActive) {
             System.out.println("ожидаю ввода команды...");
             String line = scanner.nextLine();
-            String[]tokens = line.split(" ");
-            Arrays.stream(tokens).forEach(System.out::println);
-            switch (tokens[0]){
+            String[] tokens = line.split(" ");
+            switch (tokens[0]) {
                 case "/add":
                     cart.addProductById(Long.parseLong(tokens[1]));
-                    System.out.println("Продукт: [" + cart.productService.getTitleById(Long.parseLong(tokens[1])) + "] добавлен в корзину");
                     break;
                 case "/del":
                     cart.removeProductById(Long.parseLong(tokens[1]));
-                    System.out.println("Продукт: [" + cart.productService.getTitleById(Long.parseLong(tokens[1])) + "] удален из корзины");
                     break;
                 case "/show":
+                    System.out.println("Содержимое корзины:");
                     cart.showCartContent();
                     break;
                 case "/exit":
+                    System.out.println("Завершаю работу...");
                     isActive = false;
                     break;
                 default:
                     System.out.println("команда введена некорректно ");
             }
-
-
         }
-
-        //context.close();
+        context.close();
     }
 }
