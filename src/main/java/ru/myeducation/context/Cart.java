@@ -39,9 +39,9 @@ public class Cart {
     public void removeProductById(Long id) {
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()) {
-            if(products.remove(product.get())){
+            if (products.remove(product.get())) {
                 System.out.println("Продукт " + productService.getTitleById(id) + " удален из корзины");
-            }else{
+            } else {
                 System.out.println("Продукт " + productService.getTitleById(id) + " в корзине отсутствует");
             }
         } else {

@@ -2,7 +2,6 @@ package ru.myeducation.context;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class MainApp {

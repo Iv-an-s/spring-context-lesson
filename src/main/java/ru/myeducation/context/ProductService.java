@@ -10,8 +10,7 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public String getTitleById(Long id){
-
+    public String getTitleById(Long id) {
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()) {
             return product.get().getTitle();

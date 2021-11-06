@@ -27,7 +27,7 @@ public class ProductRepository {
         return products;
     }
 
-    public Optional<Product> findById(Long id){
+    public Optional<Product> findById(Long id) {
         return products.stream().filter(n -> n.getId() == id).findFirst();
     }
 }
