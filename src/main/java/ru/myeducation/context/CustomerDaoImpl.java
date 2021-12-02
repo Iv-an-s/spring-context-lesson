@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductDaoImpl implements ProductDao {
+public class CustomerDaoImpl implements CustomerDao {
     private SessionFactoryUtils utils;
 
     @Autowired
@@ -16,26 +16,26 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Product findById(Long id) {
+    public Customer findById(Long id) {
         try (Session session = utils.getSession()) {
             session.beginTransaction();
-            Product product = session.get(Product.class, id);
+            Customer customer = session.get(Customer.class, id);
             session.getTransaction().commit();
-            return product;
+            return customer;
         }
     }
 
     @Override
-    public List<Customer> findCustomersByProductId(Long id) {
+    public List<Product> findProductsByCustomerId(Long id) {
         try (Session session = utils.getSession()) {
             session.beginTransaction();
-//            List<Customer> customerList = session.createNativeQuery("SELECT * FROM customers c JOIN customers_products ON c.id = customers_products.customer_id WHERE product_id = :id", Customer.class)
+//            List<Product> productList = session.createNativeQuery("SELECT * FROM products p JOIN customers_products ON p.id = customers_products.product_id WHERE customer_id = :id", Product.class)
 //                    .setParameter("id", id)
 //                    .getResultList();
-            Product product = session.get(Product.class, id);
-            List<Customer> customerList = product.getCustomers();
+            Customer customer = session.get(Customer.class, id);
+            List<Product> productList = customer.getProducts();
             session.getTransaction().commit();
-            return customerList;
+            return productList;
         }
     }
 }

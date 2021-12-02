@@ -18,6 +18,7 @@ public class Product {
     @Column(name = "price")
     private int price;
 
+
     @ManyToMany
     @JoinTable(
             name = "customers_products",
@@ -51,5 +52,13 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 }
