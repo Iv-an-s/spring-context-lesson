@@ -12,7 +12,5 @@ public class MainApp {
         CustomerDao customerDao = context.getBean(CustomerDaoImpl.class);
         Customer customer = customerDao.findById(1L);
         System.out.println(customer.getName());
-
-        //ProductDao productDao = context.getBean(ProductDaoImpl.class);
     }
 }
