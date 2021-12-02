@@ -1,6 +1,5 @@
 package ru.myeducation.context;
 
-import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainApp {
@@ -11,8 +10,9 @@ public class MainApp {
         utils.init();
 
         CustomerDao customerDao = context.getBean(CustomerDaoImpl.class);
-        ProductDao productDao = context.getBean(ProductDaoImpl.class);
+        Customer customer = customerDao.findById(1L);
+        System.out.println(customer.getName());
 
-        System.out.println(customerDao.findById(1L).getName());
+        //ProductDao productDao = context.getBean(ProductDaoImpl.class);
     }
 }

@@ -2,7 +2,6 @@ package ru.myeducation.context;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer findById(Long id) {
-        try(Session session = utils.getSession()){
+        try (Session session = utils.getSession()) {
             session.beginTransaction();
             Customer customer = session.get(Customer.class, id);
             session.getTransaction().commit();
@@ -28,7 +27,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public List<Product> findProductsByCustomerId(Long id) {
-        try(Session session = utils.getSession()){
+        try (Session session = utils.getSession()) {
             session.beginTransaction();
 //            List<Product> productList = session.createNativeQuery("SELECT * FROM products p JOIN customers_products ON p.id = customers_products.product_id WHERE customer_id = :id", Product.class)
 //                    .setParameter("id", id)
